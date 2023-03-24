@@ -15,14 +15,14 @@ import mockedStore from "../__mocks__/store.js";
 import BillsUI from "../views/BillsUI.js";
 
 describe("Given I am connected as an employee", () => {
-    Object.defineProperty(window, "localStorage", { value: localStorageMock });
-            
-    window.localStorage.setItem("user", JSON.stringify({
-      type: "Employee"
-    }));
-
     describe("When I am on NewBill Page", () => {
         test("Then It should show a form with multiple input and a submit button", () => {
+            Object.defineProperty(window, "localStorage", { value: localStorageMock });
+            
+            window.localStorage.setItem("user", JSON.stringify({
+              type: "Employee"
+            }));
+
             document.body.innerHTML = NewBillUI();
             
             expect(screen.getByTestId("form-new-bill")).toBeTruthy();
@@ -137,7 +137,7 @@ describe("Given I am connected as an employee", () => {
     });
 
     describe("When i want to POST a new bill", () => {
-        test("Then all fields need beed to be filled correctly render the bills page", async () => {
+        test("Then all fields need to be filled correctly & render the bills page", async () => {
             const testFile = new File(["image"], bills[0].fileName, { type: "image/png" });
             
             Object.defineProperty(window, "localStorage", { value: localStorageMock });
